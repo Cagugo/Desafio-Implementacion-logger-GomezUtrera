@@ -1,0 +1,89 @@
+
+<html>
+  <head>
+    <title>{{title}}</title>
+  </head>
+  <body>
+    <header class='products_header p-2'>
+      <div class='container'>
+        <div class='d-flex align-items-center justify-content-between p-2'>
+          <div>
+            <h4 class='m-0'>Villa Frida (Mexican Fusion Food Tacos & Tostadas)</h4>
+            <p class='form_p d-none d-md-block text-center m-0'>Shop<span class='fw-bold'>Villa Frida</span></p>
+          </div>
+          <div class='d-flex flex-column justify-content-center align-items-center ms-md-4'>
+            <div class='text-secondary d-none d-md-block'>
+              <p class='font_id mb-2'><span class='fw-bold'>Cart ID: </span> <span id='cartId'>{{cartId}}</span></p>
+            </div>
+            <div class='d-flex align-items-center mb-2'>
+              <div class='d-flex align-items-center'>
+                <p id='cartQuantity' class='font_id m-0'>
+                </p>
+              </div>
+              <div class='me-md-0'>
+                <a class='btn btn-dark' href='/products' role='button'>Products</a>
+              </div>
+            </div>
+          </div>
+          <div class='d-flex flex-column justify-content-center align-items-center'>
+            <div class='text-secondary d-none d-md-block'>
+              <p class='font_id mb-2'><span class='fw-bold text-danger text-uppercase'>{{user.role}}:</span> <span id='userEmail'>{{user.email}}</span></p>
+            </div>
+            <div class='d-flex align-items-center mb-2'>
+              <div>
+                <a class='btn btn-warning' href='/user' role='button'>Profile</a>
+              </div>
+              <div class='ps-2'>
+                <a class='btn btn-outline-danger' href='/api/session/auth/logout'>Log out</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class='container p-5'>
+      <div class='section_carts'>
+        <div class='d-flex justify-content-center'>
+          <h3 class='fw-bold mb-3 pt-3 text-uppercase text-center'>shopping cart</h3>
+        </div>
+        <div class='table-responsive'>
+          <table class='table table-bordered table-striped'>
+            <thead>
+              <tr>
+                <th>Product ID</th>
+                <th>Título</th>
+                <th>Descripción</th>
+                <th>Código</th>
+                <th>Categoría</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each carts}}
+                {{#each this.products}}
+                  <tr>
+                    <td>{{this.productId._id}}</td>
+                    <td>{{this.productId.title}}</td>
+                    <td>{{this.productId.description}}</td>
+                    <td>{{this.productId.code}}</td>
+                    <td>{{this.productId.category}}</td>
+                    <td>{{this.quantity}}</td>
+                    <td>{{this.productId.price}}</td>
+                  </tr>
+                {{/each}}
+              {{/each}}
+            </tbody>
+          </table>
+          <form action='/api/carts/{{cartId}}/purchasecart' method='POST'>
+            <div class='ps-2 text-center'>
+              <button type='submit' class='btn btn-primary btn-lg'>Buy Now</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <script src='/socket.io/socket.io.js'></script>
+    <script src='/js/carts/index.js'></script>
+  </body>
+</html>

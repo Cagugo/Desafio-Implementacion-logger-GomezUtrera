@@ -1,0 +1,43 @@
+
+<html>
+  <head>
+    <title>{{title}}</title>
+  </head>
+  <body>
+    <div class='container mt-3'>
+      <div class='d-flex justify-content-between align-items-center'>
+        <h1 class='m-0'>Chat</h1>
+        <div class='d-flex'>
+          <div>
+            <a class='btn btn-warning' href='/user'>Profile</a>
+          </div>
+          <div class='ps-2'>
+            <a class='btn btn-outline-danger' href='api/session/auth/logout'>Log out</a>
+          </div>
+        </div>
+      </div>
+      <p id='user-name'></p>
+      <div id='container_chat'>
+        <div class='row'>
+          <div class='col-md-6'>
+            <div class='input-group mb-3'>
+              <input id='mensaje' type='text' class='form-control' placeholder='Write your message' aria-label='Write your message' aria-describedby='Send' />
+              <button class='btn btn-primary' id='enviar' type='button'>Send</button>
+            </div>
+          </div>
+        </div>
+        <div class='row'>
+          <div class='col-md-6'>
+            <div class='card'>
+              <div class='card-body'>
+                <p id='chat'></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src='/socket.io/socket.io.js'></script>
+    <script src='/js/chat/index.js'></script>
+  </body>
+</html>
